@@ -1,5 +1,3 @@
-// features/daily-log/DailyLogScreen.tsx
-
 import { View, Text, TextInput, Button, FlatList } from 'react-native'
 import { useDailyLog } from './useDailyLog'
 
