@@ -1,6 +1,6 @@
 import { View, Text } from 'react-native'
 import { useState } from 'react'
-import { DailyCheckin, Mood } from './model'
+import { DailyCheckin, DailyCheckinRecord, Mood } from './model'
 import { Mascot } from './mascot/Mascot'
 import { MoodSelector } from './MoodSelector'
 import { ReflectionInput } from './ReflectionInput'
@@ -13,7 +13,7 @@ export function DailyCheckInFlow() {
   const [data, setData] = useState<DailyCheckin>({
     mood: 'neutral',
     goodThings: '',
-    badThings: '',
+    badThings: ''
   })
 
   return (
@@ -44,8 +44,13 @@ export function DailyCheckInFlow() {
           data={data}
           onSubmit={() => {
             console.log('submit', data)
+            const entity: DailyCheckinRecord = {
+            id: Date.now().toString(),
+            ...data,
+            createdAt: new Date().toISOString(),
+      }
             setStep('mood')
-            setData({ mood: 'neutral', goodThings: '', badThings: '' })
+            setData({ mood: 'neutral', goodThings: '', badThings: ''})
           }}
         />
       )}
