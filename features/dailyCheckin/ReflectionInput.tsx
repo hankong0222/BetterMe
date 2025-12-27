@@ -18,13 +18,15 @@ export function ReflectionInput({
 }: Props) {
   return (
     <View>
-        <NPCSpeech text="今天有什么让你觉得不错的事情吗？" />
+        <NPCSpeech text=" 今天有什么让你觉得不错的事情吗？"/>
         <TextInput
+            placeholder="比如：完成了工作任务，和朋友聊得很开心"
             value={goodThings}
             onChangeText={onChangeGood}
         />
-        <NPCSpeech text="有什么不太好的事情吗？" />
+        <NPCSpeech text=" 有什么不太好的事情吗？"/>
         <TextInput
+            placeholder=" 比如：感觉有点累，没时间锻炼"
             value={badThings}
             onChangeText={onChangeBad}
         />

@@ -14,5 +14,5 @@ export function Mascot({ mood }: Props) {
       ? mascotExpressions.bad
       : mascotExpressions.neutral
 
-  return <Image source={source} style={{ width: 240, height: 480 }} />
+  return <Image source={source} style={{ width: 240, height: 400 }} />
 }
