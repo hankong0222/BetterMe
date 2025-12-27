@@ -1,4 +1,5 @@
 import { View, TextInput, Button } from 'react-native'
+import { NPCSpeech } from './npc/npcSpeech'
 
 type Props = {
   goodThings: string
@@ -17,17 +18,17 @@ export function ReflectionInput({
 }: Props) {
   return (
     <View>
-      <TextInput
-        placeholder="今天做得好的地方"
-        value={goodThings}
-        onChangeText={onChangeGood}
-      />
-      <TextInput
-        placeholder="今天没做好的地方"
-        value={badThings}
-        onChangeText={onChangeBad}
-      />
-      <Button title="下一步" onPress={onNext} />
+        <NPCSpeech text="今天有什么让你觉得不错的事情吗？" />
+        <TextInput
+            value={goodThings}
+            onChangeText={onChangeGood}
+        />
+        <NPCSpeech text="有什么不太好的事情吗？" />
+        <TextInput
+            value={badThings}
+            onChangeText={onChangeBad}
+        />
+        <Button title="下一步" onPress={onNext} />
     </View>
   )
 }
