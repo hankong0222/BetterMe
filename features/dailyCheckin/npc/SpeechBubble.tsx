@@ -9,7 +9,7 @@ export function SpeechBubble({ children }: Props) {
   return (
     <View
       style={{
-        backgroundColor: '#fff',
+        backgroundColor: '#eea0d7ff',
         padding: 12,
         borderRadius: 16,
         maxWidth: '75%',

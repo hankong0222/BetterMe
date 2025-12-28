@@ -5,12 +5,13 @@ import { TypewriterText } from './TypewriterText'
 type Props = {
   text: string
   onFinish?: () => void
+  instant?: boolean
 }
 
-export function NPCSpeech({ text, onFinish }: Props) {
+export function NPCSpeech({ text, onFinish, instant }: Props) {
   return (
     <SpeechBubble>
-      <TypewriterText text={text} onFinish={onFinish} />
+      <TypewriterText text={text} onFinish={onFinish} instant={instant} />
     </SpeechBubble>
   )
 }
