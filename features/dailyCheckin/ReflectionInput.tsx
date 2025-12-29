@@ -1,6 +1,6 @@
 import { TextInput, View } from 'react-native'
 import {TouchableOpacity, Text} from 'react-native'
-import { NPCSpeech } from './npc/npcSpeech'
+import { NPCSpeech } from '../npc/npcSpeech'
 
 type GoodProps = {
   goodThings: string
