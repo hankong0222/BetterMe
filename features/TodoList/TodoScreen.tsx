@@ -1,28 +1,28 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, StyleSheet, Text, TextInput, View } from 'react-native';
 import TodoList from './TodoList';
 import { TodoListState } from './model';
 import { useTodoList } from './useTodoList';
 
 const TodoScreen: React.FC = () => {
-  const { getList, addTodo: addTodoService, updateTodo } = useTodoList()
+  const { getList, addTodo: addTodoService, updateTodo, loading, error } = useTodoList()
   const [todolist, setTodolist] = useState<TodoListState>({ day: new Date().toISOString().slice(0,10), todos: [] })
   const [text, setText] = useState('')
 
+  useEffect(() => {
+    const load = async () => {
+      const list = await getList(todolist.day)
+      setTodolist(list)
+    }
+    load()
+  }, [getList, todolist.day])
+
   const handleAdd = async () => {
     if (!text.trim()) return
-    const newTodo = await addTodoService(todolist.day, { content: text, completed: false })
+    const newTodo = await addTodoService(todolist.day, { content: text })
     setTodolist(prev => ({ ...prev, todos: [...prev.todos, newTodo] }))
     setText('')
   }
-
-//   const toggleComplete = async (id: string) => {
-//     updateTodo(
-//       todolist.todos.map(todo =>
-//         todo.id === id ? { ...todo, completed: !todo.completed } : todo
-//       )
-//     );
-//   };
 
   return (
     <View style={styles.container}>

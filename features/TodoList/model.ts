@@ -2,7 +2,6 @@ import { v4 as uuidv4 } from 'uuid';
 
 export type TodoDraft = {
     content: string
-    completed: boolean
     dueDate?: string
     priority?: 'low' | 'medium' | 'high'
     notes?: string
@@ -10,6 +9,7 @@ export type TodoDraft = {
 
 export type TodoRecord = TodoDraft & {
     id: string
+    completed: boolean
     createdAt: string
     updatedAt?: string
 }
@@ -21,17 +21,21 @@ export type TodoListState = {
     // improvements: TodoRecord[], 加AI后再加回来
 }
 
-export const createTodoRecord = (todo: TodoDraft): TodoRecord => {
-        return {
-            id: uuidv4(),
-            ...todo,
-            createdAt: new Date().toISOString()
-        };
-}  
+export function createTodoRecord(
+  base: TodoDraft,
+  meta: { id: string; createdAt: string }
+): TodoRecord {
+  return {
+    ...base,
+    id: meta.id,
+    completed: false,
+    createdAt: meta.createdAt,
+  }
+}
 
 export function updateTodoRecord(
         old: TodoRecord,
-        patch: Partial<TodoDraft>
+        patch: Partial<TodoDraft & { completed: boolean }>
         ): TodoRecord {
         return {
             ...old,
